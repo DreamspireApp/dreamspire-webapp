@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dreamspire</title>    
+</head>
+<body>
+  <h1>Dreamspire Chat</h1>
+  <input id="userText"
+placeholder="Enter text" />
+  <button onclick="send()">Send</button>
+  <p id="response"></p>
+
+  <script>
+    async function send() {
+      const text =
+document.getElementById('userText').value;
+      const res = await
+fetch("https://6b2y4detkvnug8.api.runpod.ai/chat", {
+  method: "POST",
+  headers: {"Content-Type": "application/json"},
+  body: JSON.stringify({text: text, generate_image: false})
+});
+      const data = await res.json();
+
+document.getElementById('response').innerText = data.text;
+    }
+  </script>
+</body>
+</html>
